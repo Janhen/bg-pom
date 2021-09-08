@@ -47,6 +47,7 @@
         <encoding>UTF-8</encoding>
         <joda.time.version>2.9.7</joda.time.version>
         <kudu.version>1.5.0</kudu.version>
+        <spring.kafka.version>2.5.4.RELEASE</spring.kafka.version>
     </properties>
     <repositories>
         <repository>
@@ -68,12 +69,19 @@
             <url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
         </repository>
     </repositories>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.2.RELEASE</version>
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.3.2.RELEASE</version>-->
+<!--    </parent>-->
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>2.3.2.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -317,15 +325,16 @@
             <!--            <systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>-->
             <!--        </dependency>-->
             <!--        kafka-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.kafka</groupId>-->
-<!--                <artifactId>spring-kafka</artifactId>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.kafka</groupId>-->
-<!--                <artifactId>spring-kafka-test</artifactId>-->
-<!--                <scope>test</scope>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring.kafka.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka-test</artifactId>
+                <scope>test</scope>
+            </dependency>
 <!--            <dependency>-->
 <!--                <groupId>io.projectreactor</groupId>-->
 <!--                <artifactId>reactor-test</artifactId>-->
@@ -437,6 +446,10 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <modules>
+        <module>bg-base</module>
+    </modules>
 
     <build>
         <plugins>
